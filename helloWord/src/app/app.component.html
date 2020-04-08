@@ -1,6 +1,17 @@
-<h1>
-  {{title}}
-  <app-hello-world></app-hello-world>
-
-  <app-user-list></app-user-list>
-</h1>
+<div class="ui raised segment">
+  <h2 class="ui header">Demo Form: Sku</h2>
+  <form [formGroup]="myForm" (ngSubmit)="onSubmit(myForm.value)" class="ui form">
+    <div class="field" [class.error]="!sku.valid && sku.touched">
+      <label for="skuInput">SKU</label>
+      <input type="text" id="skuInput" placeholder="SKU" name="sku" [formControl]="myForm.controls['sku']">
+      <div class="ui error" *ngIf="!sku.valid">SKU is invalid
+      </div>
+      <div class="ui error" *ngIf="sku.hasError('required')">SKU is required
+      </div>
+      <div class="ui error" *ngIf="sku.hasError('invalidSku')">SKU is 123
+      </div>
+    </div>
+    <div class="ui error" *ngIf="!myForm.valid">Form is invalid</div>
+    <button type="submit" class="ui button">Submit</button>
+  </form>
+</div>
