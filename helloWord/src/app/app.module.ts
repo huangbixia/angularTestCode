@@ -21,6 +21,10 @@ import { ArticleComponent } from './article/article.component';
 import { SearchComponent } from './search/search.component';
 
 import { SPOTIFY_PROVIDERS } from './common/service/SpotifyService';
+import { AUTH_PROVIDERS } from './common/service/AuthService';
+import { LoginComponent } from './login/login.component';
+import { ProtectedComponent } from './protected/protected.component';
+import { LoggedInGuard } from './common/loggedInGuard.guard';
 
 const routes: Routes = [
   // { path: '', redirectTo: 'home', pathMatch: 'full' },
@@ -29,7 +33,9 @@ const routes: Routes = [
   // { path: 'contact', component: ContactComponent },
   // { path: 'article/:id', component: ArticleComponent },
   { path: 'search', component: SearchComponent },
-  // { path: 'contactus', redirectTo: 'contact' }
+  // { path: 'contactus', redirectTo: 'contact' },
+  { path: 'login', component: LoginComponent },
+  { path: 'protected', component: ProtectedComponent, canActivate: [LoggedInGuard]}
 ];
 
 @NgModule({
@@ -46,7 +52,9 @@ const routes: Routes = [
     AboutComponent,
     ContactComponent,
     ArticleComponent,
-    SearchComponent
+    SearchComponent,
+    LoginComponent,
+    ProtectedComponent
   ],
   imports: [
     BrowserModule,
@@ -56,7 +64,9 @@ const routes: Routes = [
     RouterModule.forRoot(routes)  // 安装路由配置
   ],
   providers: [
+    LoggedInGuard,
     SPOTIFY_PROVIDERS,
+    AUTH_PROVIDERS,
     {
       provide: LocationStrategy,
       useClass: HashLocationStrategy
