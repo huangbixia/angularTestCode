@@ -1,5 +1,6 @@
-import { Component, OnInit, ReflectiveInjector } from '@angular/core';
+import { Component, OnInit, ReflectiveInjector, Inject } from '@angular/core';
 import { MyService } from 'common/myService';
+import { ApiService } from 'common/ApiService';
  
 @Component({
   selector: 'app-di-sample-app',
@@ -9,7 +10,9 @@ import { MyService } from 'common/myService';
 
 export class DiSampleAppComponent implements OnInit {
   myService: MyService;
-  constructor() { 
+  constructor(private apiService: ApiService,
+    @Inject('ApiServiceAlias') private aliasService: ApiService,
+    @Inject('SizeService') private sizeService: any) { 
     let injector: any = ReflectiveInjector.resolveAndCreate([MyService]);
     this.myService = injector.get(MyService);
     console.log('Same instance?', this.myService === injector.get(MyService));
@@ -17,8 +20,14 @@ export class DiSampleAppComponent implements OnInit {
 
   invokeService(): void {
     console.log('MyService return,', this.myService.getValue());
+    this.apiService.get();
+    this.aliasService.get();
+    this.sizeService.run();
   }
 
+  invokeApi(): void {
+    this.apiService.get();
+  }
   ngOnInit() {
   }
 

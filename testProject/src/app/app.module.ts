@@ -6,6 +6,10 @@ import { HttpModule } from '@angular/http';
 import { AppComponent } from './app.component';
 import { DiSampleAppComponent } from './di-sample-app/di-sample-app.component';
 import { MyService } from 'common/myService';
+import { ApiService, API_URL } from 'common/ApiService';
+import { ViewPortService } from 'common/ViewPortService';
+
+const isProduction: boolean = false;
 
 @NgModule({
   declarations: [
@@ -17,7 +21,30 @@ import { MyService } from 'common/myService';
     FormsModule,
     HttpModule
   ],
-  providers: [MyService],
+  providers: [
+    MyService, 
+    ApiService, 
+    ViewPortService,
+    {
+      provide: 'ApiServiceAlias',
+      useExisting: ApiService
+    },
+    {
+      provide: 'ApiSerive',
+      useClass: ApiService
+    },
+    {
+      provide: API_URL,
+      useValue: isProduction ? 'http://phoebe.com' : 'http://phoebeTest.com'
+    },
+    {
+      provide: 'SizeService',
+      useFactory: (viewPort: any) => {
+        return viewPort.determineService();
+      },
+      deps: [ViewPortService]
+    }
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
