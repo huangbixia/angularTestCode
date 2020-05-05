@@ -1,3 +1,4 @@
+import { uuid } from "./util/uuid";
 
 export class User {
     id: string;

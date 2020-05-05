@@ -6,7 +6,7 @@ import * as _ from 'underscore';
 
 Injectable()
 export class ThreadsService {
-
+   
   // `threads` is a observable that contains the most up to date list of threads
   threads: Observable<{ [key: string]: Thread }>;
 
