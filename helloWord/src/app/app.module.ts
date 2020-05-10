@@ -25,6 +25,8 @@ import { AUTH_PROVIDERS } from './common/service/AuthService';
 import { LoginComponent } from './login/login.component';
 import { ProtectedComponent } from './protected/protected.component';
 import { LoggedInGuard } from './common/loggedInGuard.guard';
+import { HostSampleComponent } from './host-sample/host-sample.component';
+import { PopupDirective } from './directive/popup.directive';
 
 const routes: Routes = [
   // { path: '', redirectTo: 'home', pathMatch: 'full' },
@@ -54,7 +56,9 @@ const routes: Routes = [
     ArticleComponent,
     SearchComponent,
     LoginComponent,
-    ProtectedComponent
+    ProtectedComponent,
+    HostSampleComponent,
+    PopupDirective
   ],
   imports: [
     BrowserModule,
