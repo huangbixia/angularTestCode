@@ -27,6 +27,7 @@ import { ProtectedComponent } from './protected/protected.component';
 import { LoggedInGuard } from './common/loggedInGuard.guard';
 import { HostSampleComponent } from './host-sample/host-sample.component';
 import { PopupDirective } from './directive/popup.directive';
+import { NgBookIfDirective } from './directive/ng-book-if.directive';
 
 const routes: Routes = [
   // { path: '', redirectTo: 'home', pathMatch: 'full' },
@@ -58,7 +59,8 @@ const routes: Routes = [
     LoginComponent,
     ProtectedComponent,
     HostSampleComponent,
-    PopupDirective
+    PopupDirective,
+    NgBookIfDirective
   ],
   imports: [
     BrowserModule,

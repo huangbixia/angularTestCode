@@ -9,8 +9,12 @@ import { SpotifyService } from './common/service/SpotifyService';
 
 export class AppComponent {
   title = 'app works!';
+  display: boolean;
+  constructor() {
+    this.display = true;
+  }
 
-
-
-
+  toggle() {
+    this.display = !this.display;
+  }
 }
